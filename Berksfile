@@ -7,3 +7,5 @@ cookbook 'git'
 cookbook 'perl'
 
 cookbook 'duckpan', path: './cookbooks/duckpan'
+cookbook 'duckduckhack-vm', path: './cookbooks/duckduckhack-vm'
+cookbook 'fastermirror', path: './cookbooks/fastermirror'
