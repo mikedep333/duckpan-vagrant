@@ -1,0 +1,7 @@
+- Change Name
+- Enable clipboard and Drag & Drop
+- Increase RAM: 384MB -> 1GB
+- Change pointing device to USB Tablet (will enable USB)
+- Increase Video RAM: 8MB -> 32MB
+- Enable audio
+- Remove shared folders (before exporting as an OVF/OVA)

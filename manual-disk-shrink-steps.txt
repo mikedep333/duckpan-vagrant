@@ -1,0 +1,39 @@
+comment out every ^deb-src line in /etc/apt/sources.list
+
+sudo apt-get clean
+sudo apt-get autoclean
+
+# Remove the directory
+sudo rm -fr /var/lib/apt/lists
+
+# Recreate the necessary directory structure
+sudo mkdir -p /var/lib/apt/lists/partial
+
+sudo rm -f /var/cache/apt/pkgcache.bin
+sudo rm -f /var/cache/apt/srcpkgcache.bin
+
+sudo apt-get purge apt-xapian-index
+sudo rm -r /var/cache/apt-xapian-index
+
+rm -rf ~/.cpanm/work/*
+
+then, create a new 8GB hard disk, and boot the from an ubuntu 12.04.x amd64 live cd:
+
+install package lvm2
+
+"copy" /dev/sda1 as /dev/sdb1 using gperated
+
+Recreate the lvm structure and volumes. the "root" volume is ext4. 
+
+rsync -aAXv /* /path/to/backup/folder --exclude={/dev/*,/proc/*,/sys/*,/tmp/*,/run/*,/mnt/*,/media/*,/lost+found}
+
+make sure that / has permissions 755 and is owned by root:root
+
+edit /etc/fstab to point to the new LV paths.
+No need to edit /etc/fstab for the new boot volume's UUID so long as you "copied" it using gparted
+
+reinstall grub according to the instructions here:
+http://howtoubuntu.org/how-to-repair-restore-reinstall-grub-2-with-a-ubuntu-live-cd
+(you can ignore the part about /dev/pts)
+
+once done, you can detach the old hard disk. Once you test using the new hard disk, you can delete the old one.
