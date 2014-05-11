@@ -63,5 +63,5 @@ package "xubuntu-artwork" do
   action :install
 end
 
-# This must be run after Xfce is installed.
+# This must be run after lightdm-gtk-greeter is installed.
 include_recipe "duckduckhack-vm::artwork"
