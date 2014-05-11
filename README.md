@@ -2,6 +2,8 @@
 
 This project provides a Vagrant-based development setup for DuckPAN.
 
+This branch is intended to provide the complete DuckDuckHack VM.
+
 ### Installation
 
 1. Install: [Vagrant](http://docs.vagrantup.com/v2/installation/index.html) and [Bundler](http://bundler.io/#getting-started)
@@ -18,9 +20,9 @@ This project provides a Vagrant-based development setup for DuckPAN.
 
 7. Review the CUSTOM_CONFIG settings at the top of Vagrant file.  You will want to customize the value of the synced directory to point to your local directory containing the DuckDuckGo code you wish to test.  By default, Vagrant will load a [VirtualBox Precise64](http://files.vagrantup.com/precise64.box) machine image.  If you change this, DuckDuckGo recommends Ubuntu (https://github.com/duckduckgo/p5-app-duckpan#disclaimer).
 
-8. Run `vagrant up`
+8. Run `vagrant up duckduckhack`
 
-The box takes some time to stand up.  As the duckpan-install script runs, you won't see any output for a few minutes.  On my 2.7 Ghz i7 Macbook Pro, it takes 18 minutes to complete.  Refer to [Troubleshooting](#Troubleshooting) for more info.
+The box takes some time to stand up.  As the duckpan-install script runs, you won't see any output for about 20 minutes. Refer to [Troubleshooting](#Troubleshooting) for more info.
 
 ### Usage
 
