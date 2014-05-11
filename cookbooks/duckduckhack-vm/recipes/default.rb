@@ -3,10 +3,13 @@
 # Recipe:: default
 #
 
+include_recipe "duckduckhack-vm::setpassword"
+
 package "xfce4" do
   action :install
 end
 
+# xterm & uxterm will also be installed by default
 package "xfce4-terminal" do
   action :install
 end
@@ -20,15 +23,16 @@ package "firefox" do
   action :install
 end
 
-# vim-tiny has very few features compared to regular vim
+# Commonly used text editors
+# The default package "vim-tiny" has very few features compared to regular vim
 package "vim" do
   action :install
 end
-
 package "emacs" do
   action :install
 end
 
+# Terminal multiplexers
 package "screen" do
   action :install
 end
@@ -45,6 +49,10 @@ end
 package "libpam-ck-connector" do
   action :install
 end
+execute "enable libpam-ck-connector" do
+  command "sudo dpkg-reconfigure libpam-ck-connector"
+  action :run
+end
 
 # The xubuntu display manager and greeter
 package "lightdm-gtk-greeter" do
@@ -55,3 +63,5 @@ package "xubuntu-artwork" do
   action :install
 end
 
+# This must be run after Xfce is installed.
+include_recipe "duckduckhack-vm::artwork"
