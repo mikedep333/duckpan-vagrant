@@ -39,7 +39,11 @@ Vagrant.configure("2") do |config|
     chef.cookbooks_path = './cookbooks'
 
     # uncomment this if you find Ubuntu's mirrors to be going very slow.
-    chef.add_recipe 'fastermirror'
+    #chef.add_recipe 'fastermirror'
+    # uncomment and set the hostname/ip if you wish to cache package downloads
+    # via an apt-cacher-ng server that you setup.
+    #chef.json = { "apt" => { "cacher_ipaddress" => "192.168.1.6" } }
+    #chef.add_recipe 'apt::cacher-client'
 
     chef.add_recipe 'apt'
     chef.add_recipe 'build-essential'
