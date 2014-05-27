@@ -25,6 +25,23 @@ cookbook_file "/opt/duckduckhack-vm/bg.jpg" do
   action :create
 end
 
+# https://arcticdog.wordpress.com/2012/02/08/customising-the-lightdm-gtk-greeter/
+# Unfortunately, if a user installs an update, it will revert the patch.
+# FIXME: Incorporate updates before applying this patch. Chef advises against it using chef to apply updates though..
+# There is one update for precise: 1.1.5-0ubuntu1 -> 1.1.5-0ubuntu1.1
+cookbook_file "/usr/share/lightdm-gtk-greeter/gnome/64x64/apps/dax.png" do
+  source "dax64.png"
+  action :create
+end
+cookbook_file "/opt/duckduckhack-vm/greeter.ui.patch" do
+  source "greeter.ui.patch"
+  action :create
+end
+execute "set-lightdm-icon" do
+  command "sudo patch --backup /usr/share/lightdm-gtk-greeter/greeter.ui /opt/duckduckhack-vm/greeter.ui.patch"
+  action :run
+end
+
 # Originally I intended to make calls to xfconf-query instead of manaully saving
 # config files. However, xfconf-query refuses to launch without an X session.
 #
