@@ -65,3 +65,7 @@ end
 
 # This must be run after lightdm-gtk-greeter is installed.
 include_recipe "duckduckhack-vm::artwork"
+
+service "lightdm" do
+  action :start
+end
