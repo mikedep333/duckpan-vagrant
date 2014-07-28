@@ -4,6 +4,7 @@
 #
 
 include_recipe "duckduckhack-vm::setpassword"
+include_recipe "sublime-text-editor::default"
 
 package "xfce4" do
   action :install
