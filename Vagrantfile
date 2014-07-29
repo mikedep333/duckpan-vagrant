@@ -63,9 +63,9 @@ Vagrant.configure("2") do |config|
   # setup synced folder for the DDG code: "local host machine path", "path on guest vm"
   config.vm.synced_folder CUSTOM_CONFIG['DDG_PATH'], "/code"
 
-  config.vm.define "duckpan" do |duckpan|
-  end
-
+  # Note: Only one VM must be specified due to vagrant-berkshelf not supporting
+  # multi-vm Vagrantfiles
+  # https://github.com/berkshelf/vagrant-berkshelf/issues/123
   config.vm.define "duckduckhack" do |duckduckhack|
     duckduckhack.vm.provision :chef_solo do |chef|
       chef.add_recipe 'duckduckhack-vm'
