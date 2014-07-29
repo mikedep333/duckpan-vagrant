@@ -43,6 +43,18 @@ package "xubuntu-artwork"
 # This must be run after lightdm-gtk-greeter is installed.
 include_recipe "duckduckhack-vm::artwork"
 
+# Disable the screensaver. This is common VM advice to avoid wasted CPU.
+# (especially because the 2 default screensavers, "Fiberlamp" and "FuzzyFlakes"
+# are very CPU intensive.)
+cookbook_file "/home/vagrant/.xscreensaver" do
+  source ".xscreensaver"
+  owner "vagrant"
+  group "vagrant"
+end
+cookbook_file "/etc/skel/.xscreensaver" do
+  source ".xscreensaver"
+end
+
 service "lightdm" do
   action :start
 end
