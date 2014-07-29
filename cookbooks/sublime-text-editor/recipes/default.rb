@@ -29,15 +29,23 @@ link "/usr/local/bin/sublime_text" do
   to INSTALLPARENTDIR + TARREDDIR + "/sublime_text"
 end
 
-cookbook_file "/home/dax/Desktop/" + DESKTOPFILE do
-  source DESKTOPFILE
+#cookbook_file "/home/dax/Desktop/" + DESKTOPFILE do
+#  source DESKTOPFILE
+#end
+directory "/home/vagrant/Desktop/" do
+  owner "vagrant"
+  group "vagrant"
 end
 cookbook_file "/home/vagrant/Desktop/" + DESKTOPFILE do
   source DESKTOPFILE
+  owner "vagrant"
+  group "vagrant"
 end
+directory "/etc/skel/Desktop/"
 cookbook_file "/etc/skel/Desktop/" + DESKTOPFILE do
   source DESKTOPFILE
 end
-cookbook_file "/usr/local/share/applications" + DESKTOPFILE do
+directory "/usr/local/share/applications/"
+cookbook_file "/usr/local/share/applications/" + DESKTOPFILE do
   source DESKTOPFILE
 end
