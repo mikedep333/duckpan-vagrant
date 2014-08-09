@@ -9,7 +9,6 @@ Create shortcuts on xfce4-panel on bottom of screen
 Set color scheme of xfce4-panel
 
 # TODO to make improvements over the old duckduckhack VM
-command-line only VM
 script on desktop for updating packages, including kernel
 figure out kernel upgrades not breaking virtualbox guest additions and vmware tools
 change vagrant SSH key at end

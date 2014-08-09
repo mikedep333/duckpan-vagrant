@@ -67,9 +67,14 @@ Vagrant.configure("2") do |config|
   # multi-vm Vagrantfiles
   # https://github.com/berkshelf/vagrant-berkshelf/issues/123
   config.vm.define "duckduckhack" do |duckduckhack|
+
     duckduckhack.vm.provision :chef_solo do |chef|
       chef.add_recipe 'duckduckhack-vm'
+
+      # Comment this line out if you want a command-line only VM.
+      chef.add_recipe 'duckduckhack-vm::duckduckhack-gui'
     end
+
     duckduckhack.vm.hostname = "duckduckhack"
     duckduckhack.ssh.forward_x11 = true
   end
