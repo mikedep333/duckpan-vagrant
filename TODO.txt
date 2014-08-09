@@ -8,7 +8,6 @@ Configure Firefox for fixtracking.com
 
 # TODO to make improvements over the old duckduckhack VM
 command-line only VM
-set to listen on NAT, instead of bridged
 script on desktop for updating packages, including kernel
 figure out kernel upgrades not breaking virtualbox guest additions and vmware tools
 change vagrant SSH key at end
