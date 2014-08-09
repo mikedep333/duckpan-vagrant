@@ -5,6 +5,8 @@ configure sudo
 Add Terminal icon on desktop.
 Add Firefox icon on desktop
 Configure Firefox for fixtracking.com
+Create shortcuts on xfce4-panel on bottom of screen
+Set color scheme of xfce4-panel
 
 # TODO to make improvements over the old duckduckhack VM
 command-line only VM
