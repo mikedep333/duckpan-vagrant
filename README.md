@@ -20,9 +20,9 @@ This branch is intended to provide the complete DuckDuckHack VM.
 
 7. Review the CUSTOM_CONFIG settings at the top of Vagrant file.  You will want to customize the value of the synced directory to point to your local directory containing the DuckDuckGo code you wish to test.  By default, Vagrant will load a [VirtualBox Precise64](http://cloud-images.ubuntu.com/vagrant/precise/current/precise-server-cloudimg-amd64-vagrant-disk1.box) machine image.  If you change this, DuckDuckGo recommends Ubuntu (https://github.com/duckduckgo/p5-app-duckpan#disclaimer).
 
-8. If you wish to create a command-line-only duckduckhack-vm, comment out the line in VagrantFile. You can run this command to do so: `sed "s/ chef.add_recipe 'duckduckhack-vm::duckduckhack-gui'/ # chef.add_recipe 'duckduckhack-vm::duckduckhack-gui'/g" Vagrantfile`
+8. If you wish to create a command-line-only duckduckhack-vm, comment out the line in VagrantFile. You can run this command to do so: `sed -i "s/ chef.add_recipe 'duckduckhack-vm::duckduckhack-gui'/ # chef.add_recipe 'duckduckhack-vm::duckduckhack-gui'/g" Vagrantfile`
 
-9. Run `vagrant up duckduckhack`
+9. Run `vagrant up`
 
 The box takes some time to stand up.  As the duckpan-install script runs, you won't see any output for about 20 minutes. Refer to [Troubleshooting](#Troubleshooting) for more info.
 

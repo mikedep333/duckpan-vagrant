@@ -26,9 +26,7 @@ cookbook_file "/opt/duckduckhack-vm/bg.jpg" do
 end
 
 # https://arcticdog.wordpress.com/2012/02/08/customising-the-lightdm-gtk-greeter/
-# Unfortunately, if a user installs an update, it will revert the patch.
-# FIXME: Incorporate updates before applying this patch. Chef advises against it using chef to apply updates though..
-# There is one update for precise: 1.1.5-0ubuntu1 -> 1.1.5-0ubuntu1.1
+# FIXME: Unfortunately, if a user installs an update, it will revert the patch.
 directory "/usr/share/lightdm-gtk-greeter/gnome/64x64" do
   owner "root"
   group "root"
