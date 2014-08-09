@@ -6,6 +6,10 @@
 include_recipe "duckduckhack-vm::setpassword"
 include_recipe "sublime-text-editor::default"
 
+cookbook_file "/etc/motd.tail" do
+  source "etc/motd.tail"
+end
+
 package "xfce4"
 
 # xterm & uxterm will also be installed by default
