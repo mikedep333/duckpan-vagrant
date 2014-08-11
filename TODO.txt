@@ -1,7 +1,6 @@
 # TODO to bring upto feature parity with the old duckduckhack VM
 Switch to "dax" account
 Get rid of "Ubuntu" account that exists in addition to the "Vagrant" account
-configure sudo
 Add Terminal icon on desktop.
 Add Firefox icon on desktop
 Configure Firefox for fixtracking.com
