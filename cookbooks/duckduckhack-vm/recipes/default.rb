@@ -17,3 +17,10 @@ package "emacs"
 # Terminal multiplexers
 package "screen"
 package "byobu"
+
+# The boxes contain this user, but there is no need for it.
+# Use "userdel" rather than "deluser" because it is portable betwen distros
+execute "userdel --remove ubuntu" do
+  # returns 6 is the user DNE.
+  returns [0, 6]
+end
