@@ -21,7 +21,7 @@ then, create a new 8GB hard disk, and boot the from an ubuntu 12.04.x amd64 live
 
 install package lvm2
 
-"copy" /dev/sda1 as /dev/sdb1 using gperated
+"copy" /dev/sda1 as /dev/sdb1 using gparted
 
 Recreate the lvm structure and volumes. the "root" volume is ext4. 
 
