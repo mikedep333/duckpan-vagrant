@@ -45,6 +45,21 @@ cookbook_file "/etc/skel/.xscreensaver" do
   source ".xscreensaver"
 end
 
+# Copy these .desktop files (app shortcuts) to the desktop
+# Copying is appropriate because if you drag and drop an app from the start
+# menu to the desktop, it copies the .desktop file.
+#
+# exo-terminal-emulator is the "preferred" XFCE terminal emulator
+# On this VM, it will default to the easy-to-use xfterm4,
+# but the user can change their preference.
+execute "cp --preserve=time /usr/share/applications/exo-terminal-emulator.desktop /etc/skel/Desktop/"
+execute "cp --preserve=time /usr/share/applications/exo-terminal-emulator.desktop /home/vagrant/Desktop/"
+execute "chown vagrant:vagrant /home/vagrant/Desktop/exo-terminal-emulator.desktop"
+#
+execute "cp --preserve=time /usr/share/applications/firefox.desktop /etc/skel/Desktop/"
+execute "cp --preserve=time /usr/share/applications/firefox.desktop /home/vagrant/Desktop/"
+execute "chown vagrant:vagrant /home/vagrant/Desktop/"
+
 service "lightdm" do
   action :start
 end
