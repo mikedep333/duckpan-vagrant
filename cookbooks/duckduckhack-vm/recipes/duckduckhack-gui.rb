@@ -74,10 +74,13 @@ remote_directory "/home/vagrant/.mozilla" do
 end
 # Workaround a bug in Chef.
 # Chef fails to change the ownership (from root:root)
-# and permissions (from 755) on 
+# and permissions (from 755) on:
 # .mozilla/firefox/7z1z212a.default/jetpack/jid1-ZAdIEUB7XOzOJw@jetpack/
-# and its parent dirs. It does update the ownership and permissions on its
-# contents, even the "simple-storage" dir directly underneath it.
+# .mozilla/firefox/7z1z212a.default/jetpack/
+# .mozilla/firefox/7z1z212a.default/
+# None of the other directories or files are affected.
+# Even the following subdir is not affected:
+# .mozilla/firefox/7z1z212a.default/jetpack/jid1-ZAdIEUB7XOzOJw@jetpack/simple-storage/
 #
 # If not corrected, this breaks Firefox's ability to open up its main menu.
 execute "find /home/vagrant/.mozilla -type d -print0 | xargs -0 sudo chown vagrant:vagrant"
