@@ -9,3 +9,4 @@ Set color scheme of xfce4-panel
 figure out kernel upgrades not breaking virtualbox guest additions and vmware tools
 change vagrant SSH key at end
 Add way of patching the VM once a user starts using it. (e.g., a desktop shortcut to a script)
+Update DuckPAN at each boot.
