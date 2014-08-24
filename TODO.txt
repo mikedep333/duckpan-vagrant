@@ -3,7 +3,6 @@ Switch to "dax" account
 Get rid of "Vagrant" account
 Create shortcuts on xfce4-panel on bottom of screen
 Set color scheme of xfce4-panel
-Fix VirtualBox clipboard - https://github.com/mikedep333/duckpan-vagrant/issues/1
 
 # TODO to make improvements over the old duckduckhack VM
 figure out kernel upgrades not breaking virtualbox guest additions and vmware tools
