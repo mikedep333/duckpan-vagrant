@@ -9,3 +9,5 @@ figure out kernel upgrades not breaking virtualbox guest additions and vmware to
 change vagrant SSH key at end
 Add way of patching the VM once a user starts using it. (e.g., a desktop shortcut to a script)
 Update DuckPAN at each boot.
+Automate manual-disk-shrink-steps.txt (and determine if zerofree is a good alternative to using the live CD)
+Automate manual-virtualbox-steps.txt
