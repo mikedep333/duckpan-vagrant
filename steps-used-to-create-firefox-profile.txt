@@ -1,0 +1,29 @@
+The current profile was created from Ubuntu 12.04's verson of Firefox 31.
+
+Set Home Page: https://duckduckgo.com
+
+Firefox Preferences -> Advanced -> Data Choices - Enable Firefox Health Report -> Disabled
+Firefox Preferences -> Advanced -> Data Choices - Enable Crash Reporter -> Disabled
+Firefox Preferences -> Advanced -> Data Choices - Enable Telemetry -> This should be hidden on Ubuntu's version of Firefox. Were it not hidden, we would make sure it remains disabled.
+
+Then follow the instructions on http://fixtracking.com
+While doing so:
+Disable Better Privacy from show its flash-cookie (LSO) window every time you close firefox (because we do not install flash player)
+Disable the SSL Observatory feature of HTTPS Everywhere
+
+After you've followed the instructions on http://fixtracking.com, do the following:
+
+Firefox Preferences -> Advanced -> Network -> Cached Web Content -> Clear Now
+Firefox Preferences -> Advanced -> Network -> Offline Web Content and User Data -> Clear Now
+
+Open up a terminal and:
+cd .mozilla/firefox/*.default
+rm places.sqlite
+rm healthreport.sqlite
+rm cookies.sqlite
+rm content-prefs.sqlite
+rm webappstore.sqlite
+rm permissions.sqlite
+rm search.json
+rm blocklist.xml
+rm cert8.db

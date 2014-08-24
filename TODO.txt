@@ -1,7 +1,6 @@
 # TODO to bring upto feature parity with the old duckduckhack VM
 Switch to "dax" account
 Get rid of "Vagrant" account
-Configure Firefox for fixtracking.com
 Create shortcuts on xfce4-panel on bottom of screen
 Set color scheme of xfce4-panel
 

@@ -60,6 +60,29 @@ execute "cp --preserve=time /usr/share/applications/firefox.desktop /etc/skel/De
 execute "cp --preserve=time /usr/share/applications/firefox.desktop /home/vagrant/Desktop/"
 execute "chown vagrant:vagrant /home/vagrant/Desktop/"
 
+# Configure FireFox by copying over the profile.
+remote_directory "/home/vagrant/.mozilla" do
+  source ".mozilla"
+  owner "vagrant"
+  group "vagrant"
+  mode "700"
+  files_owner "vagrant"
+  files_group "vagrant"
+  # In the profile that was generated, many files are 644, while others are 600.
+  # For simplicity of this recipe, just make them all 600.
+  files_mode "600"
+end
+# Workaround a bug in Chef.
+# Chef fails to change the ownership (from root:root)
+# and permissions (from 755) on 
+# .mozilla/firefox/7z1z212a.default/jetpack/jid1-ZAdIEUB7XOzOJw@jetpack/
+# and its parent dirs. It does update the ownership and permissions on its
+# contents, even the "simple-storage" dir directly underneath it.
+#
+# If not corrected, this breaks Firefox's ability to open up its main menu.
+execute "find /home/vagrant/.mozilla -type d -print0 | xargs -0 sudo chown vagrant:vagrant"
+execute "find /home/vagrant/.mozilla -type d -print0 | xargs -0 sudo chmod 700"
+
 service "lightdm" do
   action :start
 end
