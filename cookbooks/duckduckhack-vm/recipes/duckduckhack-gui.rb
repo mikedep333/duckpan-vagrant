@@ -74,6 +74,9 @@ execute "chown vagrant:vagrant /home/vagrant/Desktop/"
 include_recipe "sublime-text-editor::default"
 
 # Configure FireFox by copying over the profile.
+remote_directory "/etc/skel/.mozilla" do
+  source ".mozilla"
+end
 remote_directory "/home/vagrant/.mozilla" do
   source ".mozilla"
   owner "vagrant"
@@ -104,6 +107,9 @@ execute "find /home/vagrant/.mozilla -type d -print0 | xargs -0 sudo chmod 700"
 # TODO: Improve this code by copying and modifying the .desktop files from
 # /usr/share/applications/ and /usr/local/share/applications/ rather than
 # storing the .desktop files in the git repo.
+remote_directory "/etc/skel/.config/" do
+  source ".config"
+end
 remote_directory "/home/vagrant/.config/" do
   source ".config"
   owner "vagrant"
