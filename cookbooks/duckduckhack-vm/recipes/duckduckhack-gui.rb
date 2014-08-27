@@ -3,7 +3,7 @@
 # Recipe:: duckduckhack-gui
 #
 
-include_recipe "sublime-text-editor::default"
+# Note: sublime-text-editor::default is included below
 
 package "xfce4"
 
@@ -49,9 +49,20 @@ end
 # Copying is appropriate because if you drag and drop an app from the start
 # menu to the desktop, it copies the .desktop file.
 #
+# Have the desktop shortcuts placed in the following order:
+# Terminal
+# Firefox
+# Sublime Text Editor
+#
 # exo-terminal-emulator is the "preferred" XFCE terminal emulator
 # On this VM, it will default to the easy-to-use xfterm4,
 # but the user can change their preference.
+#
+directory "/etc/skel/Desktop/"
+directory "/home/vagrant/Desktop/" do
+  owner "vagrant"
+  group "vagrant"
+end
 execute "cp --preserve=time /usr/share/applications/exo-terminal-emulator.desktop /etc/skel/Desktop/"
 execute "cp --preserve=time /usr/share/applications/exo-terminal-emulator.desktop /home/vagrant/Desktop/"
 execute "chown vagrant:vagrant /home/vagrant/Desktop/exo-terminal-emulator.desktop"
@@ -59,6 +70,8 @@ execute "chown vagrant:vagrant /home/vagrant/Desktop/exo-terminal-emulator.deskt
 execute "cp --preserve=time /usr/share/applications/firefox.desktop /etc/skel/Desktop/"
 execute "cp --preserve=time /usr/share/applications/firefox.desktop /home/vagrant/Desktop/"
 execute "chown vagrant:vagrant /home/vagrant/Desktop/"
+
+include_recipe "sublime-text-editor::default"
 
 # Configure FireFox by copying over the profile.
 remote_directory "/home/vagrant/.mozilla" do
@@ -72,7 +85,7 @@ remote_directory "/home/vagrant/.mozilla" do
   # For simplicity of this recipe, just make them all 600.
   files_mode "600"
 end
-# Workaround a bug in Chef.
+# There appears to be a bug in Chef.
 # Chef fails to change the ownership (from root:root)
 # and permissions (from 755) on:
 # .mozilla/firefox/7z1z212a.default/jetpack/jid1-ZAdIEUB7XOzOJw@jetpack/
@@ -85,6 +98,26 @@ end
 # If not corrected, this breaks Firefox's ability to open up its main menu.
 execute "find /home/vagrant/.mozilla -type d -print0 | xargs -0 sudo chown vagrant:vagrant"
 execute "find /home/vagrant/.mozilla -type d -print0 | xargs -0 sudo chmod 700"
+
+# Launcher Icons
+#
+# TODO: Improve this code by copying and modifying the .desktop files from
+# /usr/share/applications/ and /usr/local/share/applications/ rather than
+# storing the .desktop files in the git repo.
+remote_directory "/home/vagrant/.config/" do
+  source ".config"
+  owner "vagrant"
+  group "vagrant"
+  mode "700"
+  files_owner "vagrant"
+  files_group "vagrant"
+  files_mode "600"
+end
+# Workaround the same bug as before.
+# A different set of directories need their permissions fixed.
+# If not corrected, XFCE fails to start.
+execute "find /home/vagrant/.config -type d -print0 | xargs -0 sudo chown vagrant:vagrant"
+execute "find /home/vagrant/.config -type d -print0 | xargs -0 sudo chmod 700"
 
 service "lightdm" do
   action :start

@@ -43,7 +43,7 @@
     <property name="plugin-8" type="string" value="separator"/>
     <property name="plugin-9" type="string" value="launcher">
       <property name="items" type="array">
-        <value type="string" value="13769703161.desktop"/>
+        <value type="string" value="14091081331.desktop"/>
       </property>
     </property>
     <property name="plugin-11" type="string" value="launcher">
@@ -53,7 +53,7 @@
     </property>
     <property name="plugin-12" type="string" value="launcher">
       <property name="items" type="array">
-        <value type="string" value="13770022301.desktop"/>
+        <value type="string" value="14091081402.desktop"/>
       </property>
     </property>
     <property name="plugin-13" type="string" value="separator"/>
