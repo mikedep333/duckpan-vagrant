@@ -1,8 +1,6 @@
 # TODO to bring upto feature parity with the old duckduckhack VM
 Switch to "dax" account
 Get rid of "Vagrant" account
-Set color scheme of xfce4-panel
-Set Thunar as default file manager (otherwise, the user must select it from the list.)
 
 # TODO to make improvements over the old duckduckhack VM
 figure out kernel upgrades not breaking virtualbox guest additions and vmware tools

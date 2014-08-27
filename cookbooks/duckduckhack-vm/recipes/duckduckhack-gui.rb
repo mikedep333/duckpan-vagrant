@@ -125,6 +125,18 @@ end
 execute "find /home/vagrant/.config -type d -print0 | xargs -0 sudo chown vagrant:vagrant"
 execute "find /home/vagrant/.config -type d -print0 | xargs -0 sudo chmod 700"
 
+# Set Thunar as the default XFCE file manager
+cookbook_file "/etc/skel/.config/xfce4/helpers.rc" do
+  source ".config/xfce4/helpers.rc"
+end
+cookbook_file "/home/vagrant/.config/xfce4/helpers.rc" do
+  source ".config/xfce4/helpers.rc"
+  owner "vagrant"
+  group "vagrant"
+  mode "700"
+end
+
+
 service "lightdm" do
   action :start
 end
