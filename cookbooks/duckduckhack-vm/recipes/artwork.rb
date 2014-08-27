@@ -70,6 +70,11 @@ cookbook_file "/etc/xdg/xfce4/panel/default.xml" do
   source "etc/xdg/xfce4/panel/default.xml"
   action :create
 end
+# Set theme to "Raleigh"
+cookbook_file "/etc/xdg/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml" do
+  source "etc/xdg/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml"
+  action :create
+end
 
 # customize login screen (lightdm-gtk-greeter)
 execute "lightdm-gtk-greeter background color" do
