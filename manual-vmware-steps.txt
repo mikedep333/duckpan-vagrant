@@ -1,7 +1,7 @@
 Done using VMware Workstation Tech Preview 2014
 
-Import the .ovf. You will need to select to relax the hardware check.
-Presumably because VMware does not support AHCI.)
+Import the VirtualBox .ova. You will need to select to relax the hardware check.
+(Presumably because VMware does not support AHCI.)
 
 Change the virtual hardware compatiblity to 8.0 (Under "manage")
 
