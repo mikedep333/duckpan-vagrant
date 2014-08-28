@@ -1,4 +1,4 @@
-- Change Name
+- Change Name to: DuckDuckHack 2014-08-27 VBox (assuming that's today's date)
 - Change the Version of Linux from "Ubuntu (32 bit)"  to "Ubuntu (64 bit)"
 - Enable clipboard and Drag & Drop
 - Increase RAM: 384MB -> 1GB
@@ -7,3 +7,9 @@
 - Increase Video RAM: 12MB -> 32MB
 - Remove Port Forwarding for port 22
 - Remove shared folders (before exporting as an OVF/OVA)
+- Set the "Description" to contain the URL to the source of the VM,
+  the git revision, and any other notes.
+- Once you are finished, export to an OVA with the following settings:
+  1. Filename: DuckDuckHack 2014-08-27 VBox (assuming that's today's date)
+  2. Format: OVF 1.0
+  3. Write Manifest file: Yes
