@@ -30,22 +30,25 @@ And boot the from an ubuntu 12.04.x amd64 live cd.
 # These steps apply to the current boxes, where there is no LVM setup.
 
 Open Gnome Disk Utility
+For the new hard disk, select "Format Drive" and select MBR.
 Create a "7.516 GB" ext4 partition (actually 7GB). Name: cloudimg-rootfs. Deselect "Take ownership of filesystem".
 Crete a swap partition with the remaining space. Name: swap
 # Note: No need to copy the filesystem's UUID because the box's fstab uses the
 # LABEL to know which fs to mount.
 mount the 2 partitions /mnt/sda1 and /mnt/sdb1
-rsync -aAXv /mnt/sda1/* /mnt/sdb1/ --exclude={/dev/*,/proc/*,/sys/*,/tmp/*,/run/*,/mnt/*,/media/*,/lost+found}
+sudo rsync -aAXv /mnt/sda1/* /mnt/sdb1/ --exclude={/dev/*,/proc/*,/sys/*,/tmp/*,/run/*,/mnt/*,/media/*,/lost+found}
 Make sure the root of /dev/sdb1 is owned by root:root and mode 755
 edit /dev/sdb1/etc/fstab to add the line:
 LABEL=swap		none	swap	sw	0 0
 
+shutdown and detach the original hard disk
+
+Boot the the CD again and:
 reinstall grub according to the instructions here:
 http://howtoubuntu.org/how-to-repair-restore-reinstall-grub-2-with-a-ubuntu-live-cd
+Then shutdown and reboot from the new hard disk.
 
-# IMPORTANT!
-Immediately afterwards, detach the original hard disk.
-Test booting from teh new hard disk.
+Test booting from the new hard disk.
 
 Once tested, delete the old hard disk.
 Switch the SATA port that the hard disk is in to "SATA Port 0"
