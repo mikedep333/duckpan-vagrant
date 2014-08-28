@@ -1,0 +1,34 @@
+Done using VMware Workstation Tech Preview 2014
+
+Import the .ovf. You will need to select to relax the hardware check.
+Presumably because VMware does not support AHCI.)
+
+Change the virtual hardware compatiblity to 8.0 (Under "manage")
+
+Enable shared folders.
+Sync guest time with host.
+
+Detach hard disk from IDE interface and reattach using SCSI.
+When prompted, do not select to upgrade the VMDK format.
+
+Re-attache the DVD (so it is on IDE) if you get an error when starting the VM.
+
+Once you login to a TTY:
+sudo apt-get purge virtualbox-guest-dkms virtualbox-guest-utils virtualbox-guest-x11
+sudo apt-get update
+# Open Source VMware Tools. Depends on the drivers package.
+sudo apt-get install open-vm-toolbox
+# We need to switch to the generic kernel to get the vmwgfx kernel module
+sudo apt-get install linux-image-generic linux-headers-generic
+sudo apt-get purge linux-image-virtual linxu-image-3.2.0.67-virtual linux-headers-virtual linux-headers-3.2.0.67-virtual
+sudo apt-get install xserver-xorg
+sudo dpkg-reconfigure linux-image-generic
+sudo dpkg-reconfigure open-vm-dkms
+sudo dpkg-reconfigure xserver-xorg-video-vmware
+sudo reboot
+
+You should now be booted to X11.
+
+Then repeat manual-disk-shrink-steps.txt
+
+Then export as a .ova. Make sure you give the file a name that ends with .ova, not .ovf.
