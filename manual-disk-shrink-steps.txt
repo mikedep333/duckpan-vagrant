@@ -1,5 +1,8 @@
 comment out every ^deb-src line in /etc/apt/sources.list
 
+# /opt/bin/chef is 134MB!
+sudo apt-get purge chef
+
 sudo apt-get clean
 sudo apt-get autoclean
 
@@ -13,27 +16,37 @@ sudo rm -f /var/cache/apt/pkgcache.bin
 sudo rm -f /var/cache/apt/srcpkgcache.bin
 
 sudo apt-get purge apt-xapian-index
+# This didn't exist on the 2014-08-27 DuckDuckHack VM for some reason.
 sudo rm -r /var/cache/apt-xapian-index
 
 rm -rf ~/.cpanm/work/*
 
-then, create a new 8GB hard disk, and boot the from an ubuntu 12.04.x amd64 live cd:
+# Chef backs up other files too, but this is the only large one (5.5MB)
+sudo rm -f /var/chef/backup/tmp/sublime-text-editor.tar.bz2.chef-*
 
-install package lvm2
+Then, create a new 8GB .vmdk dynamically expanding hard disk
+And boot the from an ubuntu 12.04.x amd64 live cd.
 
-"copy" /dev/sda1 as /dev/sdb1 using gparted
+# These steps apply to the current boxes, where there is no LVM setup.
 
-Recreate the lvm structure and volumes. the "root" volume is ext4. 
-
-rsync -aAXv /* /path/to/backup/folder --exclude={/dev/*,/proc/*,/sys/*,/tmp/*,/run/*,/mnt/*,/media/*,/lost+found}
-
-make sure that / has permissions 755 and is owned by root:root
-
-edit /etc/fstab to point to the new LV paths.
-No need to edit /etc/fstab for the new boot volume's UUID so long as you "copied" it using gparted
+Open Gnome Disk Utility
+Create a "7.516 GB" ext4 partition (actually 7GB). Name: cloudimg-rootfs. Deselect "Take ownership of filesystem".
+Crete a swap partition with the remaining space. Name: swap
+# Note: No need to copy the filesystem's UUID because the box's fstab uses the
+# LABEL to know which fs to mount.
+mount the 2 partitions /mnt/sda1 and /mnt/sdb1
+rsync -aAXv /mnt/sda1/* /mnt/sdb1/ --exclude={/dev/*,/proc/*,/sys/*,/tmp/*,/run/*,/mnt/*,/media/*,/lost+found}
+Make sure the root of /dev/sdb1 is owned by root:root and mode 755
+edit /dev/sdb1/etc/fstab to add the line:
+LABEL=swap		none	swap	sw	0 0
 
 reinstall grub according to the instructions here:
 http://howtoubuntu.org/how-to-repair-restore-reinstall-grub-2-with-a-ubuntu-live-cd
-(you can ignore the part about /dev/pts)
 
-once done, you can detach the old hard disk. Once you test using the new hard disk, you can delete the old one.
+# IMPORTANT!
+Immediately afterwards, detach the original hard disk.
+Test booting from teh new hard disk.
+
+Once tested, delete the old hard disk.
+Switch the SATA port that the hard disk is in to "SATA Port 0"
+Switch the SATA controller to having only 2 ports.
