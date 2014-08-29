@@ -1,4 +1,4 @@
-Done using VMware Workstation Tech Preview 2014
+# Done using VMware Workstation Tech Preview 2014
 
 Import the VirtualBox .ova. You will need to select to relax the hardware check.
 (Presumably because VMware does not support AHCI.)
@@ -11,7 +11,7 @@ Sync guest time with host.
 Detach hard disk from IDE interface and reattach using SCSI.
 When prompted, do not select to upgrade the VMDK format.
 
-Re-attache the DVD (so it is on IDE) if you get an error when starting the VM.
+Reattach the DVD (so it is on IDE) if you get an error when starting the VM.
 
 Once you login to a TTY:
 sudo apt-get purge virtualbox-guest-dkms virtualbox-guest-utils virtualbox-guest-x11
