@@ -4,7 +4,7 @@
   <property name="Net" type="empty">
     <!-- This is the only setting modified from the Ubuntu 12.04 default -->
     <property name="ThemeName" type="string" value="Raleigh"/>
-    <property name="IconThemeName" type="string" value="elementary-xfce-dark"/>
+    <property name="IconThemeName" type="string" value="Tango"/>
   </property>
   <property name="Xft" type="empty">
     <property name="DPI" type="int" value="-1"/>

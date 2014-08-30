@@ -7,11 +7,18 @@
 
 package "xfce4"
 
+# In order for the XFCE start menu and Thunar file browser to have icons,
+# the Tango icon theme is selected in this cookbook's xsettings.xml
+#
+# tango-icon-theme is preferable to xubuntu-icon-theme because it is
+# 10.8 MB rather than 26.8 MB.
+#
+# tango-icon-theme is installed automatically because xfce4 recommends it.
+# However, as a precaution, we will explicitly install it anyway.
+package "tango-icon-theme"
+
 # xterm & uxterm will also be installed by default
 package "xfce4-terminal"
-
-# Enables the Thunar file manager to have icons for files and folders.
-package "xubuntu-icon-theme"
 
 package "firefox"
 
@@ -27,8 +34,6 @@ end
 
 # The xubuntu display manager and greeter
 package "lightdm-gtk-greeter"
-# Without this, lightdm-gtk-greeter will have missing icons
-package "xubuntu-artwork"
 
 # This must be run after lightdm-gtk-greeter is installed.
 include_recipe "duckduckhack-vm::artwork"

@@ -27,16 +27,11 @@ end
 
 # https://arcticdog.wordpress.com/2012/02/08/customising-the-lightdm-gtk-greeter/
 # FIXME: Unfortunately, if a user installs an update, it will revert the patch.
-directory "/usr/share/lightdm-gtk-greeter/gnome/64x64" do
+directory "/usr/share/lightdm-gtk-greeter/gnome/64x64/apps/" do
   owner "root"
   group "root"
   mode 00755
-  action :create
-end
-directory "/usr/share/lightdm-gtk-greeter/gnome/64x64/apps" do
-  owner "root"
-  group "root"
-  mode 00755
+  recursive true
   action :create
 end
 cookbook_file "/usr/share/lightdm-gtk-greeter/gnome/64x64/apps/dax.png" do
