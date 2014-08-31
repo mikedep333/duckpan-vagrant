@@ -1,6 +1,6 @@
 comment out every ^deb-src line in /etc/apt/sources.list
 
-# /opt/bin/chef is 134MB!
+# /opt/chef/bin is 134MB!
 sudo apt-get purge chef
 
 sudo apt-get clean
@@ -8,7 +8,6 @@ sudo apt-get autoclean
 
 # Remove the directory
 sudo rm -fr /var/lib/apt/lists
-
 # Recreate the necessary directory structure
 sudo mkdir -p /var/lib/apt/lists/partial
 
