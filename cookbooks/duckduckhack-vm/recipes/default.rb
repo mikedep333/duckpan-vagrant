@@ -3,6 +3,11 @@
 # Recipe:: default
 #
 
+# Purges or removes unneeded packages at the beginning of the chef run,
+# so that (hopefully) new data will overwrite their disk space and not expand
+# the disk.
+include_recipe "duckduckhack-vm::InitialDiskCleanup"
+
 # Enable multiverse because many users will want to install packages from it.
 execute "cp -a /etc/apt/sources.list /etc/apt/sources.list.before-multiverse"
 execute 'awk \'{if ($1 == "#" && $5 == "multiverse") { print $2,$3,$4,$5} else {print $0}}\' /etc/apt/sources.list.before-multiverse > /etc/apt/sources.list'
