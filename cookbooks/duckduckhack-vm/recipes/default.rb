@@ -33,3 +33,10 @@ execute "userdel --remove ubuntu" do
   # returns 6 is the user DNE.
   returns [0, 6]
 end
+
+cookbook_file "/etc/init.d/duckpan-update" do
+  source "etc/init.d/duckpan-update"
+  mode "755"
+end
+
+execute "update-rc.d duckpan-update defaults"

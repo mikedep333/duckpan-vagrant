@@ -1,0 +1,6 @@
+start on ((duckpan-updated
+           and filesystem
+           and runlevel [!06]
+           and started dbus
+           and plymouth-ready)
+          or runlevel PREVLEVEL=S)
