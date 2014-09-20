@@ -36,6 +36,9 @@ Vagrant.configure("2") do |config|
   # headless?  change to 'GUI' to have the VM's window available
   config.vm.provider :virtualbox do |vb|
     vb.gui = CUSTOM_CONFIG['GUI']
+
+    # 1024 MB of RAM seems to be sufficient for the DuckDuckHack VM
+    vb.memory = 1024
   end
 
   # Enable provisioning with chef solo, using the included cookbooks.  The
