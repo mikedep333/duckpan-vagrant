@@ -3,9 +3,9 @@ Switch to "dax" account
 Get rid of "Vagrant" account
 
 # TODO to make improvements over the old duckduckhack VM
-figure out kernel upgrades not breaking virtualbox guest additions and vmware tools
 change vagrant SSH key at end
 Add way of patching the VM once a user starts using it. (e.g., a desktop shortcut to a script)
 Update DuckPAN at each boot.
 Automate manual-disk-shrink-steps.txt (and determine if zerofree is a good alternative to using the live CD)
 Automate manual-virtualbox-steps.txt
+Configure .txt files (and potentially other formats) to be opened in Sublime rather than emacs (GTK)
