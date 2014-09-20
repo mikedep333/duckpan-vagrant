@@ -4,6 +4,8 @@ Version=1.0
 Type=Application
 Name=Sublime Text
 Comment=
+# MimeType copied from emacs23 from Ubuntu 12.04 LTS
+MimeType=text/english;text/plain;text/x-makefile;text/x-c++hdr;text/x-c++src;text/x-chdr;text/x-csrc;text/x-java;text/x-moc;text/x-pascal;text/x-tcl;text/x-tex;application/x-shellscript;text/x-c;text/x-c++;
 Exec=/usr/local/bin/sublime_text
 Icon=/usr/local/Sublime Text 2/Icon/256x256/sublime_text.png
 Path=

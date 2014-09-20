@@ -49,3 +49,10 @@ directory "/usr/local/share/applications/"
 cookbook_file "/usr/local/share/applications/" + DESKTOPFILE do
   source DESKTOPFILE
 end
+# Register the file associations ("MimeType" from /usr/local/share/applications)
+# I haven't determined why, but it has precedence over Emacs.
+# We (DuckDuckHack VM) want it to have precedence over Emacs because Sublime is
+# easier to learn.
+execute "update-desktop-database" do
+  user "root"
+end
