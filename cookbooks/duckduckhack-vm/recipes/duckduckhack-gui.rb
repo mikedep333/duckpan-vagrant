@@ -20,6 +20,11 @@ package "tango-icon-theme"
 # xterm & uxterm will also be installed by default
 package "xfce4-terminal"
 
+# Archive Manager for XFCE so that users can extract zips, tarballs, etc
+# graphically. Xubuntu 12.04 uses file-roller, but file-roller would pull in
+# a lot more dependencies.
+package "squeeze"
+
 package "firefox"
 
 # xubuntu uses this, even though it has "gnome" in the gname
