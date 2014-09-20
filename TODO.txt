@@ -8,4 +8,3 @@ Add way of patching the VM once a user starts using it. (e.g., a desktop shortcu
 Update DuckPAN at each boot.
 Automate manual-disk-shrink-steps.txt (and determine if zerofree is a good alternative to using the live CD)
 Automate manual-virtualbox-steps.txt
-Configure .txt files (and potentially other formats) to be opened in Sublime rather than emacs (GTK)
