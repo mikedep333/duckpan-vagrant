@@ -38,5 +38,9 @@ cookbook_file "/etc/init.d/duckpan-update" do
   source "etc/init.d/duckpan-update"
   mode "755"
 end
+cookbook_file "/etc/init/lightdm.override" do
+  source "etc/init/lightdm.override"
+  mode "644"
+end
 
 execute "update-rc.d duckpan-update defaults"

@@ -14,59 +14,66 @@
 PATH=/usr/bin/:/bin:/sbin
 
 INSTALL_PATH=/home/vagrant/perl5/bin/duckpan
-LOG_PATH=/var/log/boot.log
+LOG=/tmp/duckpan-update.log
 
 # Often during DuckDuckHack VM development, you commented out the lines in the
 # DuckPAN cookbook in order to speed up your testing of the VM. If so, this
 # script should exit cleanly.
 function exit_not_installed()
 {
-	echo "DuckPAN is not installed or the installation path is no longer"
-	echo "${INSTALL_PATH}"
-	echo "Exiting duckpan-update"
-	initctl emit --no-wait duckpan-updated
-	exit 0
+	echo "DuckPAN is not installed or the installation path is no longer" 2>&1 | tee -a $LOG
+	echo "${INSTALL_PATH}"                                                2>&1 | tee -a $LOG
+	echo "Exiting duckpan-update"                                         2>&1 | tee -a $LOG
+	exit_script
 }
 function exit_failed_to_download()
 {
-	echo "Failed to download"
-	echo "Exiting duckpan-update"
-	initctl emit --no-wait duckpan-updated
-	exit 0
+	echo "Failed to download"      2>&1 | tee -a $LOG
+	echo "Exiting duckpan-update"  2>&1 | tee -a $LOG
+	exit_script
 }
 function exit_failed_to_run()
 {
-	echo "Failed to run update script"
-	echo "Exiting duckpan-update"
+	echo "Failed to run update script"  2>&1 | tee -a $LOG
+	echo "Exiting duckpan-update"       2>&1 | tee -a $LOG
+	exit_script
+}
+
+function exit_script()
+{
+	# Give the user some time to read what's on screen.
+	echo "The X11 graphical desktop will start in 10 seconds" 2>&1 | tee -a $LOG
+	sleep 10
+	# /etc/init/lightdm.override makes LightDM wait for this signal for
+	# 2 reasons:
+	# 1. The user really shouldn't start using the VM until DuckPAN has been
+	#    updated.
+	# 2. There seems to be a bug whereby boot logging (to /var/log/boot.log)
+	#    does not occur while LightDM/X.org is starting. This only happens
+	#    when the VirtualBox Guest Additions are in use. It usually
+	#    interferes with this init script's logging, as well as other
+	#    init scripts too.
 	initctl emit --no-wait duckpan-updated
 	exit 0
 }
 
-
 case "$1" in
 	start)
-		echo 'Updating DuckPAN (init script "duckpan-update")'
-		echo "This could take several minutes, or longer if your machine is slow"
-		echo "or there is a large update to install."
-		echo "Output will be logged to ${LOG_PATH}"
-		# test -f ${INSTALL_PATH} || exit_not_installed
+		echo 'Updating DuckPAN (init script "duckpan-update")'                   2>&1 | tee $LOG
+		echo "This could take several minutes or longer if your machine is slow" 2>&1 | tee -a $LOG
+		echo "or if there is a large update to install."                         2>&1 | tee -a $LOG
+		echo "This script's output, as well as the output of commands it runs,"  2>&1 | tee -a $LOG
+		echo "will be logged to ${LOG}"                                          2>&1 | tee -a $LOG
+		test -f ${INSTALL_PATH} || exit_not_installed
 
-		echo "Attempting to download http://duckpan.com/install.pl as duckpan-install.pl"
-		su -l vagrant -c 'wget -L http://duckpan.com/install.pl -O duckpan-install.pl' || exit_failed_to_download
-		echo "duckpan-install.pl downloaded successfully. Running it now."
-		su -l vagrant -c 'bash -l -i -c "perl duckpan-install.pl"' || exit_failed_to_run
-		echo "DuckPAN was updated successfully or there was no update to install."
+		echo "Attempting to download http://duckpan.com/install.pl as duckpan-install.pl" 2>&1 | tee -a $LOG
+		su -l vagrant -c 'wget -L http://duckpan.com/install.pl -O duckpan-install.pl'               &>> $LOG || exit_failed_to_download
+		echo "duckpan-install.pl downloaded successfully. Running it now."                2>&1 | tee -a $LOG
+		echo "Its output will be logged to the aformentioned file, ${LOG}"                2>&1 | tee -a $LOG
+		su -l vagrant -c 'bash -l -i -c "perl duckpan-install.pl"'                                   &>> $LOG || exit_failed_to_run
+		echo "DuckPAN was updated successfully or there was no update to install."        2>&1 | tee -a $LOG
 
-		# /etc/init/lightdm.override makes LightDM wait for this signal for
-		# 2 reasons:
-		# 1. The user really shouldn't start using the VM until DuckPAN has been
-		#    updated.
-		# 2. There seems to be a bug whereby boot logging (to /var/log/boot.log)
-		#    does not occur while LightDM/X.org is starting. This only happens
-		#    when the VirtualBox Guest Additions are in use. It usually
-		#    interferes with this init script's logging, as well as other
-		#    init scripts too.
-		initctl emit --no-wait duckpan-updated
+		exit_script
 		;;
 	stop)
 		# Do nothing during shutdown
