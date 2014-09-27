@@ -28,8 +28,8 @@ function exit_not_installed()
 }
 function exit_failed_to_download()
 {
-	echo "Failed to download"      2>&1 | tee -a $LOG
-	echo "Exiting duckpan-update"  2>&1 | tee -a $LOG
+	echo "Failed to download install.pl"     2>&1 | tee -a $LOG
+	echo "Exiting duckpan-update"            2>&1 | tee -a $LOG
 	exit_script
 }
 function exit_failed_to_run()
