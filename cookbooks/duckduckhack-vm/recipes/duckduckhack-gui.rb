@@ -83,6 +83,15 @@ execute "chown vagrant:vagrant /home/vagrant/Desktop/"
 
 include_recipe "sublime-text-editor::default"
 
+link "/home/vagrant/Desktop/duckpan-update.log" do
+  to "/tmp/duckpan-update.log"
+  owner "vagrant"
+  group "vagrant"
+end
+link "/etc/skel/Desktop/duckpan-update.log" do
+  to "/tmp/duckpan-update.log"
+end
+
 # Configure FireFox by copying over the profile.
 remote_directory "/etc/skel/.mozilla" do
   source ".mozilla"

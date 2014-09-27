@@ -34,16 +34,13 @@ function exit_failed_to_download()
 }
 function exit_failed_to_run()
 {
-	echo "Failed to run update script"  2>&1 | tee -a $LOG
-	echo "Exiting duckpan-update"       2>&1 | tee -a $LOG
+	echo "Failed to run duckpan-install.pl"  2>&1 | tee -a $LOG
+	echo "Exiting duckpan-update"            2>&1 | tee -a $LOG
 	exit_script
 }
 
 function exit_script()
 {
-	# Give the user some time to read what's on screen.
-	echo "The X11 graphical desktop will start in 10 seconds" 2>&1 | tee -a $LOG
-	sleep 10
 	# /etc/init/lightdm.override makes LightDM wait for this signal for
 	# 2 reasons:
 	# 1. The user really shouldn't start using the VM until DuckPAN has been
@@ -67,10 +64,10 @@ case "$1" in
 		test -f ${INSTALL_PATH} || exit_not_installed
 
 		echo "Attempting to download http://duckpan.com/install.pl as duckpan-install.pl" 2>&1 | tee -a $LOG
-		su -l vagrant -c 'wget -L http://duckpan.com/install.pl -O duckpan-install.pl'               &>> $LOG || exit_failed_to_download
+		su -l vagrant -c 'wget -L http://duckpan.com/install.pl -O duckpan-install.pl'              &>> $LOG || exit_failed_to_download
 		echo "duckpan-install.pl downloaded successfully. Running it now."                2>&1 | tee -a $LOG
 		echo "Its output will be logged to the aformentioned file, ${LOG}"                2>&1 | tee -a $LOG
-		su -l vagrant -c 'bash -l -i -c "perl duckpan-install.pl"'                                   &>> $LOG || exit_failed_to_run
+		su -l vagrant -c 'bash -l -i -c "perl duckpan-install.pl"'                                  &>> $LOG || exit_failed_to_run
 		echo "DuckPAN was updated successfully or there was no update to install."        2>&1 | tee -a $LOG
 
 		exit_script
