@@ -64,7 +64,12 @@ case "$1" in
 		test -f ${INSTALL_PATH} || exit_not_installed
 
 		echo "Attempting to download http://duckpan.com/install.pl as duckpan-install.pl" 2>&1 | tee -a $LOG
-		su -l vagrant -c 'wget -L http://duckpan.com/install.pl -O duckpan-install.pl'              &>> $LOG || exit_failed_to_download
+		# By setting --tries=1, the longest a user will have to wait is 60 seconds,
+		# which would occur for a "connection timed out" error.
+		# (Ubuntu 12.04 default of /proc/sys/net/ipv4/tcp-syn-retries = 5)
+		#
+		# Other errors such as "No route to host" take no more than a few seconds.
+		su -l vagrant -c 'wget --tries=1 -L http://duckpan.com/install.pl -O duckpan-install.pl'              &>> $LOG || exit_failed_to_download
 		echo "duckpan-install.pl downloaded successfully. Running it now."                2>&1 | tee -a $LOG
 		echo "Its output will be logged to the aformentioned file, ${LOG}"                2>&1 | tee -a $LOG
 		su -l vagrant -c 'bash -l -i -c "perl duckpan-install.pl"'                                  &>> $LOG || exit_failed_to_run
