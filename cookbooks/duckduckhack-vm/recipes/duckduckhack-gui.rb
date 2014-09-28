@@ -20,10 +20,26 @@ package "tango-icon-theme"
 # xterm & uxterm will also be installed by default
 package "xfce4-terminal"
 
-# Archive Manager for XFCE so that users can extract zips, tarballs, etc
-# graphically. Xubuntu 12.04 uses file-roller, but file-roller would pull in
-# a lot more dependencies.
-package "squeeze"
+# An archive manager is necessary because many (novice) developers exchange
+# code via archives rather than VCSs
+#
+# I would specify squeeze (the XFCE archiver), but it is unable to handle .7z
+# files and was removed in ubuntu 13.10
+#
+# Similarly, xarchiver in Ubuntu 12.04 has buggy handling of .7z files.
+#
+# Ubuntu Desktop, Xubuntu and Lubuntu 12.04 all use file-roller, so let's use
+# that, even though it is not as lightweight.
+#
+package "file-roller" do
+  # Do not install the entire humanity-icon-theme, gnome-icon-theme and
+  # some other smaller packages
+  options "--no-install-recommends"
+end
+# Integrate file-roller with Thunar
+package "thunar-archive-plugin"
+# RARR!
+package "unrar"
 
 package "firefox"
 
