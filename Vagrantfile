@@ -71,15 +71,18 @@ Vagrant.configure("2") do |config|
   # https://github.com/berkshelf/vagrant-berkshelf/issues/123
   config.vm.define "duckduckhack" do |duckduckhack|
 
+    duckduckhack.vm.hostname = "duckduckhack"
+    duckduckhack.ssh.forward_x11 = true
+
     duckduckhack.vm.provision :chef_solo do |chef|
       chef.add_recipe 'duckduckhack-vm'
 
       # Comment this line out if you want a command-line only VM.
       chef.add_recipe 'duckduckhack-vm::duckduckhack-gui'
+	  # Remove the "vagrant insecure public key"
+	  # For obvious reasons, this must be done at the end of the privisioning.
+      chef.add_recipe 'duckduckhack-vm::remove-vagrant-ssh-key'
     end
-
-    duckduckhack.vm.hostname = "duckduckhack"
-    duckduckhack.ssh.forward_x11 = true
   end
 
 end
