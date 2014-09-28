@@ -71,14 +71,16 @@ cookbook_file "/etc/skel/.xscreensaver" do
   source ".xscreensaver"
 end
 
+# Simple script to update Ubuntu
+# Desktop shortcut is created below
+cookbook_file "/usr/local/bin/update-ubuntu.sh" do
+  source "usr/local/bin/update-ubuntu.sh"
+  mode "755"
+end
+
 # Copy these .desktop files (app shortcuts) to the desktop
 # Copying is appropriate because if you drag and drop an app from the start
 # menu to the desktop, it copies the .desktop file.
-#
-# Have the desktop shortcuts placed in the following order:
-# Terminal
-# Firefox
-# Sublime Text Editor
 #
 # exo-terminal-emulator is the "preferred" XFCE terminal emulator
 # On this VM, it will default to the easy-to-use xfterm4,
@@ -96,6 +98,15 @@ execute "chown vagrant:vagrant /home/vagrant/Desktop/exo-terminal-emulator.deskt
 execute "cp --preserve=time /usr/share/applications/firefox.desktop /etc/skel/Desktop/"
 execute "cp --preserve=time /usr/share/applications/firefox.desktop /home/vagrant/Desktop/"
 execute "chown vagrant:vagrant /home/vagrant/Desktop/"
+
+cookbook_file "/etc/skel/Desktop/Update Ubuntu.desktop" do
+  source "etc/skel/Desktop/Update Ubuntu.desktop"
+end
+cookbook_file "/home/vagrant/Desktop/Update Ubuntu.desktop" do
+  source "etc/skel/Desktop/Update Ubuntu.desktop"
+  owner "vagrant"
+  group "vagrant"
+end
 
 include_recipe "sublime-text-editor::default"
 

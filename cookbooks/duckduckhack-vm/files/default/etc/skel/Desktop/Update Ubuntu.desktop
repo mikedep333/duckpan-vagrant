@@ -1,0 +1,8 @@
+[Desktop Entry]
+Version=1.0
+Name=Update Ubuntu
+Exec=/usr/local/bin/update-ubuntu.sh
+Terminal=true
+Type=Application
+# Tango Icon
+Icon=system-software-update
