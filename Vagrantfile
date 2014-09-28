@@ -79,6 +79,12 @@ Vagrant.configure("2") do |config|
 
       # Comment this line out if you want a command-line only VM.
       chef.add_recipe 'duckduckhack-vm::duckduckhack-gui'
+
+      # In case an apt-cacher-ng server was configured to be used earlier,
+      # disable it.
+      chef.json = { "apt" => { } }
+      chef.add_recipe 'apt::cacher-client'
+
 	  # Remove the "vagrant insecure public key"
 	  # For obvious reasons, this must be done at the end of the privisioning.
       chef.add_recipe 'duckduckhack-vm::remove-vagrant-ssh-key'
