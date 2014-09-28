@@ -4,6 +4,5 @@ Get rid of "Vagrant" account
 
 # TODO to make improvements over the old duckduckhack VM
 change vagrant SSH key at end
-Update DuckPAN at each boot.
 Automate manual-disk-shrink-steps.txt (and determine if zerofree is a good alternative to using the live CD)
 Automate manual-virtualbox-steps.txt
