@@ -11,3 +11,5 @@
   1. Filename: DuckDuckHack 2014-08-27 VBox (assuming that's today's date)
   2. Format: OVF 1.0
   3. Write Manifest file: Yes
+  Note: With these settings, the VM can be imported as far back as 4.1.x
+        at least.

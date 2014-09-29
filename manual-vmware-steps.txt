@@ -1,4 +1,6 @@
 # Done using VMware Workstation Tech Preview 2014
+# The VM can be imported as far back as VMware Player 4.0.x
+# (which corresponds to VMware Workstation 8.0.x)
 
 Import the VirtualBox .ova. You will need to select to relax the hardware check.
 (Presumably because VMware does not support AHCI.)
