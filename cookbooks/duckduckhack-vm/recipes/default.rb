@@ -45,3 +45,12 @@ cookbook_file "/etc/init/lightdm.override" do
 end
 
 execute "update-rc.d duckpan-update defaults"
+
+# Restore the Ubuntu 12.04 default grub config file.
+# Prevents users from being prompted about how to handle the "locally modified"
+# grub config file when a grub update is installed.
+# cloud-images.ubuntu.com modifies this file in their boxes,
+# but VirtualBox and VMware do not need those modifications..
+cookbook_file "/etc/default/grub" do
+  source "etc/default/grub"
+end
