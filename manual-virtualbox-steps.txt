@@ -1,5 +1,4 @@
 - Change Name to: DuckDuckHack 2014-08-27 VBox (assuming that's today's date)
-- Change the Version of Linux from "Ubuntu (32 bit)"  to "Ubuntu (64 bit)"
 - Enable clipboard and Drag & Drop
 - Change pointing device to USB Tablet (will enable USB)
 - Enable PAE/NX
