@@ -7,6 +7,15 @@
 
 package "xfce4"
 
+# Remove this package because:
+# 1. It takes up 8.5 MB installed. It contains artwork.
+# 2. It would set the bootloader to a debian background, is likely to confuse
+# users into thinking they are using Debian rather than Ubuntu.
+# (#2 is fixed in Ubuntu 14.04)
+package "desktop-base" do
+  action :purge
+end
+
 # In order for the XFCE start menu and Thunar file browser to have icons,
 # the Tango icon theme is selected in this cookbook's xsettings.xml
 #
