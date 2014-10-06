@@ -117,6 +117,16 @@ cookbook_file "/home/vagrant/Desktop/Update Ubuntu.desktop" do
   group "vagrant"
 end
 
+# URL to https://github.com/duckduckgo/p5-app-duckpan
+cookbook_file "/etc/skel/Desktop/Get Started.desktop" do
+  source "etc/skel/Desktop/Get Started.desktop"
+end
+cookbook_file "/home/vagrant/Desktop/Get Started.desktop" do
+  source "etc/skel/Desktop/Get Started.desktop"
+  owner "vagrant"
+  group "vagrant"
+end
+
 include_recipe "sublime-text-editor::default"
 
 link "/home/vagrant/Desktop/duckpan-update.log" do

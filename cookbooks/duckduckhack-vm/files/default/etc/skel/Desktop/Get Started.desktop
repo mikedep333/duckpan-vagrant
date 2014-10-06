@@ -1,0 +1,7 @@
+[Desktop Entry]
+Version=1.0
+Type=Link
+Name=Get Started
+Comment=Info on using DuckPAN
+Icon=/opt/duckduckhack-vm/dax.png
+URL=https://github.com/duckduckgo/p5-app-duckpan
