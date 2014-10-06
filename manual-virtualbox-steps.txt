@@ -13,3 +13,12 @@
   3. Write Manifest file: Yes
   Note: With these settings, the VM can be imported as far back as 4.1.x
         at least.
+  And with the following info:
+  Name: DuckDuckHack
+  Product: DDH VM
+  Product-URL: https://github.com/duckduckgo/p5-app-duckpan
+  Vendor: DuckDuckGo
+  Vendor-URL: https://duckduckgo.com/
+  Version: (today's date in ISO 8601 format. For example: 2014-12-31)
+  Description: The DuckDuckHack Virtual Machine is a comprehensive development environment for DuckDuckGo instant answers.
+  License: Apache 2.0
