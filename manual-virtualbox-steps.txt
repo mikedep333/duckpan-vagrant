@@ -1,3 +1,4 @@
+- sudo usermod -a -G vboxsf vagrant
 - Change Name to: DuckDuckHack 2014-08-27 VBox (assuming that's today's date)
 - Enable clipboard and Drag & Drop
 - Change pointing device to USB Tablet (will enable USB)
