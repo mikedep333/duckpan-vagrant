@@ -9,7 +9,7 @@
 - Set the "Description" to contain the URL to the source of the VM,
   the git revision, and any other notes.
 - Once you are finished, export to an OVA with the following settings:
-  1. Filename: DuckDuckHack 2014-08-27 VBox (assuming that's today's date)
+  1. Filename: ddh-vbox-2014-08-27 (assuming that's today's date)
   2. Format: OVF 1.0
   3. Write Manifest file: Yes
   Note: With these settings, the VM can be imported as far back as 4.1.x
