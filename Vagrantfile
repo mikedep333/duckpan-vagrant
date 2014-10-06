@@ -29,9 +29,14 @@ Vagrant.configure("2") do |config|
   # enable Berkshelf integration for Chef cookbook management
   config.berkshelf.enabled = true
 
-  # 'duckpan server' runs a development server on port 5000, so this forwards
-  # that port to make it accessible.
-  config.vm.network :forwarded_port, guest: 5000, host: 5000
+  # 'duckpan server' runs a development server on port 5000, which you can
+  # access via the VM's Firefox bweb browser.
+  # Uncomment this to make it also accessible from the host OS's browser.
+  #
+  # This is disabled (commented out) because only 1 VM can listen on port 5000
+  # at a time. And because duckpan server might be running on the host OS.
+  #
+  # config.vm.network :forwarded_port, guest: 5000, host: 5000
 
   # headless?  change to 'GUI' to have the VM's window available
   config.vm.provider :virtualbox do |vb|
