@@ -2,7 +2,9 @@
 # The VM can be imported as far back as VMware Player 4.0.x
 # (which corresponds to VMware Workstation 8.0.x)
 
-Import the VirtualBox .ova. You will need to select to relax the hardware check.
+Import the VirtualBox .ova.
+Name: ddh-vmw-2014-12-31 (assuming that is today's date)
+You will need to select to relax the hardware check.
 (Presumably because VMware does not support AHCI.)
 
 Change the virtual hardware compatiblity to 8.0 (Under "manage")
@@ -33,4 +35,9 @@ You should now be booted to X11.
 
 Then repeat manual-disk-shrink-steps.txt
 
-Then export as a .ova. Make sure you give the file a name that ends with .ova, not .ovf.
+Description: (See manual-virtualbox-steps.txt)
+Settings -> Options -> Appliance View -> Version (See manual-virtualbox-steps.txt)
+Settings -> Options -> Appliance View -> Author (See "Vendor" from manual-virtualbox-steps.txt)
+
+Then export as a .ova with a name in the format: ddh-vmw-2014-10-05.ova
+ Make sure you give the file a name that ends with .ova, not .ovf.
