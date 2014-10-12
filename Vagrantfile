@@ -9,7 +9,8 @@ CUSTOM_CONFIG = {
                   "BOX_URL"   =>  "http://cloud-images.ubuntu.com/vagrant/precise/current/precise-server-cloudimg-amd64-vagrant-disk1.box",
                   "HEADLESS"  =>  false, 
                   "GUI"       =>  true, 
-                  "DDG_PATH"  =>  "~/DuckDuckGo/repos"
+                  "DDG_PATH"  =>  "~/DuckDuckGo/repos",
+				  "PERLBREW_PERL_VERSION" => ["perl-5.16.3"]
                 }
 
 Vagrant.configure("2") do |config|
@@ -61,6 +62,11 @@ Vagrant.configure("2") do |config|
 
     chef.add_recipe 'apt'
     chef.add_recipe 'build-essential'
+
+    # perlbrew_root defaults to /opt/perlbrew
+    chef.json = { "perlbrew" => { "perls" => CUSTOM_CONFIG['PERLBREW_PERL_VERSION'] } }
+    chef.add_recipe 'perlbrew'
+
     chef.add_recipe 'duckpan'
 
     # uncomment to run chef-solo in debug

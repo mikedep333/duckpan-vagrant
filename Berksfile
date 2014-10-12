@@ -5,6 +5,7 @@ cookbook 'dmg'
 cookbook 'build-essential'
 cookbook 'git'
 cookbook 'perl'
+cookbook 'perlbrew'
 
 cookbook 'duckpan', path: './cookbooks/duckpan'
 cookbook 'duckduckhack-vm', path: './cookbooks/duckduckhack-vm'
