@@ -2,11 +2,11 @@
 # vi: set ft=ruby :
 
 CUSTOM_CONFIG = {
-                  "BOX_NAME"  =>  "precise64-current", 
+                  "BOX_NAME"  =>  "precise32-current", 
                 # This box URL includes the latest bugfix & security patches.
                 # It curently ships with VirtualBox guest additions 4.1.12,
                 # and the raring HWE stack (kernel 3.8.)
-                  "BOX_URL"   =>  "http://cloud-images.ubuntu.com/vagrant/precise/current/precise-server-cloudimg-amd64-vagrant-disk1.box",
+                  "BOX_URL"   =>  "http://cloud-images.ubuntu.com/vagrant/precise/current/precise-server-cloudimg-i386-vagrant-disk1.box",
                   "HEADLESS"  =>  false, 
                   "GUI"       =>  true, 
                   "DDG_PATH"  =>  "~/DuckDuckGo/repos",

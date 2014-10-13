@@ -3,7 +3,20 @@
 # Recipe:: default
 #
 
-URL="http://c758482.r82.cf2.rackcdn.com/Sublime%20Text%202.0.2%20x64.tar.bz2"
+# TODO: Write code for other operating systems.
+if node['kernel']['os'] != "GNU/Linux"
+  return
+end
+
+# Sorry ARM, power64, and s390x users, Sublime is not available for you.
+if    node['kernel']['machine'] == "x86_64"
+  URL="http://c758482.r82.cf2.rackcdn.com/Sublime%20Text%202.0.2%20x64.tar.bz2"
+elsif node['kernel']['machine'] == "i686"
+  URL="http://c758482.r82.cf2.rackcdn.com/Sublime%20Text%202.0.2.tar.bz2"
+else
+  return
+end
+
 TARBALLPATH="/tmp/sublime-text-editor.tar.bz2"
 DESKTOPFILE="Sublime Text.desktop"
 
