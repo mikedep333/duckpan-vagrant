@@ -3,9 +3,6 @@
 - Disable VT-x/AMD-V (This will noticeably decrease performance, but many
                       computers do not support this or have it disabled in
                       the BIOS.)
-- Enable clipboard and Drag & Drop
-- Change pointing device to USB Tablet (will enable USB)
-- Increase Video RAM: 12MB -> 32MB
 - Remove Port Forwarding for port 22
 - Remove shared folders (before exporting as an OVF/OVA)
 - Set the "Description" to contain the URL to the source of the VM,

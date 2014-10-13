@@ -50,6 +50,13 @@ Vagrant.configure("2") do |config|
     vb.customize ["modifyvm", :id, "--pae", "off"]
     # DuckDuckHack VM: Not all users have nested paging, so disable it.
     vb.customize ["modifyvm", :id, "--nestedpaging", "off"]
+
+    # DuckDuckHack VM: Settings for a better user experience.
+    vb.customize ["modifyvm", :id, "--clipboard", "bidirectional"]
+    vb.customize ["modifyvm", :id, "--draganddrop", "bidirectional"]
+    vb.customize ["modifyvm", :id, "--usb", "on"]
+    vb.customize ["modifyvm", :id, "--mouse", "usbtablet"]
+    vb.customize ["modifyvm", :id, "--vram", "32"]
   end
 
   # Enable provisioning with chef solo, using the included cookbooks.  The
