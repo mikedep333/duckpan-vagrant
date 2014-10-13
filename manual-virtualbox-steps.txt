@@ -1,8 +1,10 @@
 - sudo usermod -a -G vboxsf vagrant
 - Change Name to: DuckDuckHack 2014-08-27 VBox (assuming that's today's date)
+- Disable VT-x/AMD-V (This will noticeably decrease performance, but many
+                      computers do not support this or have it disabled in
+                      the BIOS.)
 - Enable clipboard and Drag & Drop
 - Change pointing device to USB Tablet (will enable USB)
-- Enable PAE/NX
 - Increase Video RAM: 12MB -> 32MB
 - Remove Port Forwarding for port 22
 - Remove shared folders (before exporting as an OVF/OVA)

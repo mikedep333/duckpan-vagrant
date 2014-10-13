@@ -45,6 +45,11 @@ Vagrant.configure("2") do |config|
 
     # 1024 MB of RAM seems to be sufficient for the DuckDuckHack VM
     vb.memory = 1024
+
+    # DuckDuckHack VM: Not all users have PAE, so disable it.
+    vb.customize ["modifyvm", :id, "--pae", "off"]
+    # DuckDuckHack VM: Not all users have nested paging, so disable it.
+    vb.customize ["modifyvm", :id, "--nestedpaging", "off"]
   end
 
   # Enable provisioning with chef solo, using the included cookbooks.  The
