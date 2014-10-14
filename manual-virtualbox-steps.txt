@@ -5,8 +5,6 @@
                       the BIOS.)
 - Remove Port Forwarding for port 22
 - Remove shared folders (before exporting as an OVF/OVA)
-- Set the "Description" to contain the URL to the source of the VM,
-  the git revision, and any other notes.
 - Once you are finished, export to an OVA with the following settings:
   1. Filename: ddh-vbox-2014-08-27 (assuming that's today's date)
   2. Format: OVF 1.0
