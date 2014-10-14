@@ -19,4 +19,4 @@
   Vendor-URL: https://duckduckgo.com/
   Version: (today's date in ISO 8601 format. For example: 2014-12-31)
   Description: The DuckDuckHack Virtual Machine is a comprehensive development environment for DuckDuckGo instant answers.
-  License: Apache 2.0
+  License: (Copy and paste the contents of LICENSE.txt, which is Apache 2.0.)
