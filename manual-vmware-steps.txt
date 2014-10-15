@@ -7,6 +7,8 @@ Name: ddh-vmw-2014-12-31 (assuming that is today's date)
 You will need to select to relax the hardware check.
 (Presumably because VMware does not support AHCI.)
 
+Change the OS from "Ubuntu 64-bit" to "Ubuntu"
+
 Change the virtual hardware compatiblity to 8.0 (Under "manage")
 
 Enable shared folders.
@@ -15,7 +17,7 @@ Sync guest time with host.
 Detach hard disk from IDE interface and reattach using SCSI.
 When prompted, do not select to upgrade the VMDK format.
 
-Reattach the DVD (so it is on IDE) if you get an error when starting the VM.
+Change the DVD from being on IDE 0:1 to IDE 0:0 the DVD so that you do not get an error when starting the VM.
 
 Once you login to a TTY:
 sudo apt-get purge virtualbox-guest-dkms virtualbox-guest-utils virtualbox-guest-x11
@@ -23,8 +25,9 @@ sudo apt-get update
 # Open Source VMware Tools. Depends on the drivers package.
 sudo apt-get install open-vm-toolbox
 # We need to switch to the generic kernel to get the vmwgfx kernel module
-sudo apt-get install linux-image-generic linux-headers-generic
-sudo apt-get purge linux-image-virtual linxu-image-3.2.0.67-virtual linux-headers-virtual linux-headers-3.2.0.67-virtual
+sudo apt-get install linux-generic linux-image-generic linux-headers-generic
+# This step assumes the current kernel version is 3.2.0-67
+sudo apt-get purge linux-virtual linux-image-virtual linxu-image-3.2.0.67-virtual linux-headers-virtual linux-headers-3.2.0.67-virtual
 sudo apt-get install xserver-xorg
 sudo dpkg-reconfigure linux-image-generic
 sudo dpkg-reconfigure open-vm-dkms
