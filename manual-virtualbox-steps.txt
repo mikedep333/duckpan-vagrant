@@ -1,5 +1,7 @@
 - sudo usermod -a -G vboxsf vagrant
-- Change Name to: DuckDuckHack 2014-08-27 VBox (assuming that's today's date)
+- Change Name to: DuckDuckHack
+  (Note, the name you specify during export will be ignored in favor of this
+   name)
 - Disable VT-x/AMD-V (This will noticeably decrease performance, but many
                       computers do not support this or have it disabled in
                       the BIOS.)
@@ -22,5 +24,4 @@
   Description:
 The DuckDuckHack Virtual Machine is a comprehensive development environment for DuckDuckGo instant answers.
 Note: If your system supports Intel VT-x or AMD-V, it is recommended that you enable it under Settings -> System -> Acceleration. See https://www.virtualbox.org/manual/ch10.html#hwvirt for more info.
-
-  License: (Copy and paste the contents of LICENSE.txt, which is Apache 2.0.)
+  License: (Click "Replace..." then select LICENSE.txt")
