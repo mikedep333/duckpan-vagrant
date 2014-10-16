@@ -1,4 +1,10 @@
 - sudo usermod -a -G vboxsf vagrant
+- Shutdown the VM. But before you do, run this command to make the X11 desktop
+  be reasonably small, 800x600:
+  xrandr --output VBOX0 --mode 800x600
+  This is needed because when the VM reboots, the lightdm login screen will be
+  at the previously used resolution. A large resolution may be too big for many
+  users' monitors.
 - Change Name to: DuckDuckHack
   (Note, the name you specify during export will be ignored in favor of this
    name)
