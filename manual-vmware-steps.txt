@@ -17,18 +17,20 @@ Sync guest time with host.
 Detach hard disk from IDE interface and reattach using SCSI.
 When prompted, do not select to upgrade the VMDK format.
 
-Change the DVD from being on IDE 0:1 to IDE 0:0 the DVD so that you do not get an error when starting the VM.
+Change the DVD drive from being on IDE 0:1 to IDE 0:0  so that you do not get an error when starting the VM.
+Deselect "Connect at power on" for the DVD drive.
 
 Once you login to a TTY:
-sudo apt-get purge virtualbox-guest-dkms virtualbox-guest-utils virtualbox-guest-x11
 sudo apt-get update
+# Prevent xorg and xserver-xorg from being removed during the next step
+sudo apt-get install xserver-xorg-video-vmware
+sudo apt-get purge virtualbox-guest-dkms virtualbox-guest-utils virtualbox-guest-x11
 # Open Source VMware Tools. Depends on the drivers package.
 sudo apt-get install open-vm-toolbox
 # We need to switch to the generic kernel to get the vmwgfx kernel module
 sudo apt-get install linux-generic linux-image-generic linux-headers-generic
 # This step assumes the current kernel version is 3.2.0-67
 sudo apt-get purge linux-virtual linux-image-virtual linxu-image-3.2.0.67-virtual linux-headers-virtual linux-headers-3.2.0.67-virtual
-sudo apt-get install xserver-xorg
 sudo dpkg-reconfigure linux-image-generic
 sudo dpkg-reconfigure open-vm-dkms
 sudo dpkg-reconfigure xserver-xorg-video-vmware
@@ -39,8 +41,21 @@ You should now be booted to X11.
 Then repeat manual-disk-shrink-steps.txt
 
 Description: (See manual-virtualbox-steps.txt)
-Settings -> Options -> Appliance View -> Version (See manual-virtualbox-steps.txt)
-Settings -> Options -> Appliance View -> Author (See "Vendor" from manual-virtualbox-steps.txt)
 
-Then export as a .ova with a name in the format: ddh-vmw-2014-10-05.ova
- Make sure you give the file a name that ends with .ova, not .ovf.
+# Note, we would set the Appliance View "Version" and "Author"
+# but VMware Workstation and VMware Player ignore them when exporting.
+# Even if you manually edit the .OVF, they also ingore them when importing.
+
+#Run this command, adjusting the file paths as needed:
+#"c:\Program Files (x86)\VMware\VMware Workstation\OVFTool\ovftool.exe"  --overwrite --allowExtraConfig --eula@="Z:\ddh\duckpan-vagrant\LICENSE.txt" "c:\Virtual Machines\ddh-vmw-2014-10-14\ddh-vmw-2014-10-14.vmx" "c:\Virtual Machines\ddh-vmw-2014-10-14.ovf"
+#
+# Note the use of a .ovf file extension, not .ova
+File -> Export to OVF -> ddh-vmw-2014-10-14.ovf
+
+Copy LICENSE.txt to a copy (LICENSE.txt.vmware) with new line at the top with nothing but a '.' character.
+This works around a text rendering bug in VMware.
+
+# This command uses max compression, which VMware workstation's GUI does not offer.
+# It also sets the license file.
+Run this command, adjusting the file paths as needed:
+"c:\Program Files (x86)\VMware\VMware Workstation\OVFTool\ovftool.exe" --overwrite  --skipManifestCheck --compress=9 --eula@=z:\ddh\duckpan-vagrant\LICENSE.txt.vmware --name="DuckDuckHack"  "c:\Virtual Machines\ddh-vmw-2014-10-14.ovf"  "c:\Virtual Machines\ddh-vmw-2014-10-14.ova"
