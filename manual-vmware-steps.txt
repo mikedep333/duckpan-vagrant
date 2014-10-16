@@ -40,7 +40,7 @@ You should now be booted to X11.
 
 Then repeat manual-disk-shrink-steps.txt
 
-Description: (See manual-virtualbox-steps.txt)
+Description: (See manual-virtualbox-steps.txt, but exclude the portion about Intel VT-x/AMD-V because VMware auto-detects whether to use them.)
 
 # Note, we would set the Appliance View "Version" and "Author"
 # but VMware Workstation and VMware Player ignore them when exporting.

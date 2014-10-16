@@ -3,6 +3,7 @@
 - Disable VT-x/AMD-V (This will noticeably decrease performance, but many
                       computers do not support this or have it disabled in
                       the BIOS.)
+- Enable PAE/NX (Ubuntu 12.04 virtual kernels require this.)
 - Remove Port Forwarding for port 22
 - Remove shared folders (before exporting as an OVF/OVA)
 - Once you are finished, export to an OVA with the following settings:
@@ -18,5 +19,8 @@
   Vendor: DuckDuckGo
   Vendor-URL: https://duckduckgo.com/
   Version: (today's date in ISO 8601 format. For example: 2014-12-31)
-  Description: The DuckDuckHack Virtual Machine is a comprehensive development environment for DuckDuckGo instant answers.
+  Description:
+The DuckDuckHack Virtual Machine is a comprehensive development environment for DuckDuckGo instant answers.
+Note: If your system supports Intel VT-x or AMD-V, it is recommended that you enable it under Settings -> System -> Acceleration. See https://www.virtualbox.org/manual/ch10.html#hwvirt for more info.
+
   License: (Copy and paste the contents of LICENSE.txt, which is Apache 2.0.)
