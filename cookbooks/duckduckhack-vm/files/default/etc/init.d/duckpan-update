@@ -13,7 +13,6 @@
 
 PATH=/usr/bin/:/bin:/sbin
 
-INSTALL_PATH=/home/vagrant/perl5/bin/duckpan
 LOG=/tmp/duckpan-update.log
 
 # Often during DuckDuckHack VM development, you commented out the lines in the
@@ -21,9 +20,8 @@ LOG=/tmp/duckpan-update.log
 # script should exit cleanly.
 function exit_not_installed()
 {
-	echo "DuckPAN is not installed or the installation path is no longer" 2>&1 | tee -a $LOG
-	echo "${INSTALL_PATH}"                                                2>&1 | tee -a $LOG
-	echo "Exiting duckpan-update"                                         2>&1 | tee -a $LOG
+	echo "DuckPAN is not installed or the vagrant account is not setup properly" 2>&1 | tee -a $LOG
+	echo "Exiting duckpan-update"                                                2>&1 | tee -a $LOG
 	exit_script
 }
 function exit_failed_to_download()
@@ -61,7 +59,7 @@ case "$1" in
 		echo "or if there is a large update to install."                         2>&1 | tee -a $LOG
 		echo "This script's output, as well as the output of commands it runs,"  2>&1 | tee -a $LOG
 		echo "will be logged to ${LOG}"                                          2>&1 | tee -a $LOG
-		test -f ${INSTALL_PATH} || exit_not_installed
+		su -l vagrant -c 'bash -l -i -c "which duckpan"' || exit_not_installed
 
 		echo "Attempting to download http://duckpan.com/install.pl as duckpan-install.pl" 2>&1 | tee -a $LOG
 		# By setting --tries=1, the longest a user will have to wait is 60 seconds,
