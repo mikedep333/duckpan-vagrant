@@ -201,6 +201,13 @@ cookbook_file "/home/vagrant/.config/xfce4/helpers.rc" do
   mode "700"
 end
 
+# Disable mouse wheel scrolling workspaces. The reason for this is that it is
+# very easy to switch workspaces by accident. I am confident that this is very
+# non-intuitive. Especially when you have a window minimized.
+cookbook_file "/etc/xdg/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml" do
+  source "etc/xdg/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml"
+  action :create
+end
 
 service "lightdm" do
   action :start
