@@ -13,8 +13,8 @@ execute "chown -R vagrant #{node[:perlbrew][:perlbrew_root]}"
 execute "echo \"source #{node[:perlbrew][:perlbrew_root]}/etc/bashrc\" >> ~vagrant/.bashrc" do
   user "vagrant"
 end
-
 execute "echo \"source #{node[:perlbrew][:perlbrew_root]}/etc/bashrc\" >> /etc/skel/.bashrc"
+
 # The attribute ['perlbrew']['install_options'] = "--switch" does not seem to
 # work, so we call the switch subcommand manually.
 # You do need to source the .bashrc file to run the subswitch command;
@@ -23,6 +23,13 @@ execute "bash -l -i -c \"perlbrew switch #{node[:perlbrew][:perls][0]}\"" do
   environment ({ "HOME" => "/home/vagrant" })
   user "vagrant"
 end
+# Switch to the Perlbrew perl for all new users
+#
+# This file should not be included in the cookbook because it has the Perlbrew
+# version # string in it, but the latest Perlbrew version is always installed by
+# the Perlbrew cookbook.
+directory "/etc/skel/.perlbrew"
+execute "cp --preserve=time -r /home/vagrant/.perlbrew/init /etc/skel/.perlbrew/"
 
 # cloud-images.ubuntu.com boxes have linux-headers-generic installed
 # (currently linux-headers-3.2.0-61-generic) installed, even though
