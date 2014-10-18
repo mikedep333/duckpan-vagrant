@@ -49,6 +49,10 @@ Then shutdown and reboot from the new hard disk.
 
 Test booting from the new hard disk.
 
-Once tested, delete the old hard disk.
+Once tested:
+Delete the old hard disk.
+# The DVD drive is not really needed. In VMware, its a serious usability issue
+# because VMware has a tendency to lock the host drive and not let go.
+Remove the DVD Drive
 Switch the SATA port that the hard disk is in to "SATA Port 0"
-Switch the SATA controller to having only 2 ports.
+Switch the SATA controller to having only 1 port.
