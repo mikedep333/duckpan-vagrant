@@ -52,10 +52,10 @@ Description: (See manual-virtualbox-steps.txt, but exclude the portion about Int
 # Note the use of a .ovf file extension, not .ova
 File -> Export to OVF -> ddh-vmw-2014-10-14.ovf
 
-Copy LICENSE.txt to a copy (LICENSE.txt.vmware) with new line at the top with nothing but a '.' character.
-This works around a text rendering bug in VMware.
-
 # This command uses max compression, which VMware workstation's GUI does not offer.
 # It also sets the license file.
+#
+# Note that the license file will have the whitespace at the beginning of the 1st line ignored.
+# This is a bug in how VMware Workstation/Player renders the license file.
 Run this command, adjusting the file paths as needed:
-"c:\Program Files (x86)\VMware\VMware Workstation\OVFTool\ovftool.exe" --overwrite  --skipManifestCheck --compress=9 --eula@=z:\ddh\duckpan-vagrant\LICENSE.txt.vmware --name="DuckDuckHack"  "c:\Virtual Machines\ddh-vmw-2014-10-14.ovf"  "c:\Virtual Machines\ddh-vmw-2014-10-14.ova"
+"c:\Program Files (x86)\VMware\VMware Workstation\OVFTool\ovftool.exe" --overwrite  --skipManifestCheck --compress=9 --eula@=z:\ddh\duckpan-vagrant\LICENSE.txt --name="DuckDuckHack"  "c:\Virtual Machines\ddh-vmw-2014-10-14.ovf"  "c:\Virtual Machines\ddh-vmw-2014-10-14.ova"
