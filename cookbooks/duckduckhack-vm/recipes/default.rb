@@ -8,6 +8,18 @@
 # the disk.
 include_recipe "duckduckhack-vm::InitialDiskCleanup"
 
+# Delete the git repos cloned during the duckpan cookbook, because they will be
+# out of date by the time a user uses the VM, and because there is no reliable
+# way to update them at boot if a user has made changes.
+directory "/home/vagrant/zeroclickinfo-goodies/" do
+  action :delete
+  recursive true
+end
+directory "/home/vagrant/zeroclickinfo-spice/" do
+  action :delete
+  recursive true
+end
+
 # Enable multiverse because many users will want to install packages from it.
 execute "cp -a /etc/apt/sources.list /etc/apt/sources.list.before-multiverse"
 execute 'awk \'{if ($1 == "#" && $5 == "multiverse") { print $2,$3,$4,$5} else {print $0}}\' /etc/apt/sources.list.before-multiverse > /etc/apt/sources.list'
