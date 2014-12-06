@@ -53,6 +53,9 @@ end
 # This step is requried with the cloud-images.ubuntu.com boxes
 execute "sudo apt-get -y install libssl-dev"
 
+# Dependency for the Zodiac Goodie
+package "libmpfr-dev"
+
 # download the duckpan install script
 execute "su -l vagrant -c 'wget -L http://duckpan.com/install.pl -O duckpan-install.pl'"
 
@@ -64,3 +67,10 @@ execute "duckpan_install" do
   # .bashrc sets important PERL environment variables from perlbrew for duckpan
   command	"su -l vagrant -c 'bash -l -i -c \"perl duckpan-install.pl\"'"
 end
+
+# Install perl deps, but do not leave the directories around since they become
+# out-of-date and there is no easy & reliable way for the DDH VM to update them.
+execute "su -l vagrant -c 'bash -l -i -c \"git clone https://github.com/duckduckgo/zeroclickinfo-goodies.git\"'"
+execute "su -l vagrant -c 'bash -l -i -c \"git clone https://github.com/duckduckgo/zeroclickinfo-spice.git\"'"
+execute "su -l vagrant -c 'bash -l -i -c \"cd /home/vagrant/zeroclickinfo-spice/ && duckpan installdeps\"'"
+execute "su -l vagrant -c 'bash -l -i -c \"cd /home/vagrant/zeroclickinfo-spice/ && duckpan installdeps\"'"
