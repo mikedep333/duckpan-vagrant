@@ -36,6 +36,15 @@ end
 package "vim"
 package "emacs"
 
+cookbook_file "/home/vagrant/.vimrc" do
+  source "etc/skel/.vimrc"
+  owner "vagrant"
+  group "vagrant"
+end
+cookbook_file "/etc/skel/.vimrc" do
+  source "etc/skel/.vimrc"
+end
+
 # Terminal multiplexers
 package "screen"
 package "byobu"
