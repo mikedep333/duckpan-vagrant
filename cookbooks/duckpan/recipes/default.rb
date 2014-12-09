@@ -72,5 +72,5 @@ end
 # out-of-date and there is no easy & reliable way for the DDH VM to update them.
 execute "su -l vagrant -c 'bash -l -i -c \"git clone https://github.com/duckduckgo/zeroclickinfo-goodies.git\"'"
 execute "su -l vagrant -c 'bash -l -i -c \"git clone https://github.com/duckduckgo/zeroclickinfo-spice.git\"'"
-execute "su -l vagrant -c 'bash -l -i -c \"cd /home/vagrant/zeroclickinfo-spice/ && duckpan installdeps\"'"
+execute "su -l vagrant -c 'bash -l -i -c \"cd /home/vagrant/zeroclickinfo-goodies/ && duckpan installdeps\"'"
 execute "su -l vagrant -c 'bash -l -i -c \"cd /home/vagrant/zeroclickinfo-spice/ && duckpan installdeps\"'"
