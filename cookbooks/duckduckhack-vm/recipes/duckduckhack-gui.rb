@@ -129,13 +129,18 @@ end
 
 include_recipe "sublime-text-editor::default"
 
-link "/home/vagrant/Desktop/duckpan-update.log" do
-  to "/tmp/duckpan-update.log"
+# XFCE will automatically use this autostart .desktop file
+cookbook_file "/etc/xdg/autostart/update-duckpan.desktop" do
+  source "etc/xdg/autostart/update-duckpan.desktop"
+end
+
+link "/home/vagrant/Desktop/update-duckpan.log" do
+  to "/tmp/update-duckpan.log"
   owner "vagrant"
   group "vagrant"
 end
-link "/etc/skel/Desktop/duckpan-update.log" do
-  to "/tmp/duckpan-update.log"
+link "/etc/skel/Desktop/update-duckpan.log" do
+  to "/tmp/update-duckpan.log"
 end
 
 # Configure FireFox by copying over the profile.

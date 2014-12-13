@@ -56,16 +56,10 @@ execute "userdel --remove ubuntu" do
   returns [0, 6]
 end
 
-cookbook_file "/etc/init.d/duckpan-update" do
-  source "etc/init.d/duckpan-update"
+cookbook_file "/usr/local/bin/update-duckpan.sh" do
+  source "usr/local/bin/update-duckpan.sh"
   mode "755"
 end
-cookbook_file "/etc/init/lightdm.override" do
-  source "etc/init/lightdm.override"
-  mode "644"
-end
-
-execute "update-rc.d duckpan-update defaults"
 
 # Restore the Ubuntu 12.04 default grub config file.
 # Prevents users from being prompted about how to handle the "locally modified"
