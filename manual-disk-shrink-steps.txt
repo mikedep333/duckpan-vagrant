@@ -24,7 +24,9 @@ rm -rf ~/.cpanm/work/*
 sudo rm -f /var/chef/backup/tmp/sublime-text-editor.tar.bz2.chef-*
 
 Then, create a new 8GB .vmdk dynamically expanding hard disk
-And boot the from an ubuntu 12.04.x amd64 live cd.
+And boot the from an ubuntu 12.04.x 32-bit live cd.
+(Tested with 12.04.1 because that is the last verison to use the 12.04 HWE stack
+and the ext4 driver changes with each new major version of the kernel.)
 
 # These steps apply to the current boxes, where there is no LVM setup.
 
@@ -47,7 +49,11 @@ reinstall grub according to the instructions here:
 http://howtoubuntu.org/how-to-repair-restore-reinstall-grub-2-with-a-ubuntu-live-cd
 Then shutdown and reboot from the new hard disk.
 
+# Using a snapshot ensures that no temp files are created.
+# Temp files would take up disk space.
+Take a snapshot.
 Test booting from the new hard disk.
+Revert to the snapshot.
 
 Once tested:
 Delete the old hard disk.
