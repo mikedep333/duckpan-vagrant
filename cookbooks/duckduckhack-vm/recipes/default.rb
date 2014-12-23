@@ -62,10 +62,16 @@ cookbook_file "/usr/local/bin/update-duckpan.sh" do
 end
 
 # Restore the Ubuntu 12.04 default grub config file.
-# Prevents users from being prompted about how to handle the "locally modified"
-# grub config file when a grub update is installed.
 # cloud-images.ubuntu.com modifies this file in their boxes,
 # but VirtualBox and VMware do not need those modifications..
+#
+# Also, one modification has been made: GRUB_RECORDFAIL_TIMEOUT has been set.
+# This way, users do not wait endlessly if they hard power off the VM,
+# which is annoying for users running headless.
 cookbook_file "/etc/default/grub" do
   source "etc/default/grub"
 end
+
+# Prevent users from being prompted about how to handle the "locally modified"
+# grub config file when a grub update is installed.
+execute 'echo "grub grub/update_grub_changeprompt_threeway string keep_current" | debconf-set-selections'
