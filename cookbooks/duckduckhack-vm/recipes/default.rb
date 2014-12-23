@@ -75,3 +75,5 @@ end
 # Prevent users from being prompted about how to handle the "locally modified"
 # grub config file when a grub update is installed.
 execute 'echo "grub grub/update_grub_changeprompt_threeway string keep_current" | debconf-set-selections'
+
+execute "update-grub"
