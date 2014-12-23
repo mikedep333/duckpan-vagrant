@@ -214,6 +214,12 @@ cookbook_file "/etc/xdg/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml" do
   action :create
 end
 
+# Enable auto-login
+# These lines assume that the last section in lightdm.conf is [SeatDefaults].
+# That is the only section in Ubuntu 12.04's lightdm.conf.
+execute "echo autologin-user=vagrant   >> /etc/lightdm/lightdm.conf"
+execute "echo autologin-user-timeout=0 >> /etc/lightdm/lightdm.conf"
+
 service "lightdm" do
   action :start
 end
