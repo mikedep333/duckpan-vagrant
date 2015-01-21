@@ -2,7 +2,7 @@
 
 This project provides a Vagrant-based development setup for DuckPAN.
 
-This branch is intended to provide the complete DuckDuckHack VM.
+This branch contains the code (and manual steps) to create the complete DuckDuckHack VM that is available to download [here](https://github.com/duckduckgo/p5-app-duckpan#duckduckhack-development-virtual-machine).
 
 ### Installation
 
@@ -32,6 +32,16 @@ The box takes some time to stand up.  As the duckpan-install script runs, you wo
 
 2. Add `~/.vagrant.d/gems/bin/` to your path. For example, at the bottom of `~/.bashrc`, add:
 `export PATH=${PATH}:~/.vagrant.d/gems/bin/`
+
+### Finish creating the DuckDuckHack VM
+
+These steps only need to be followed if you wish to create a new version of the DuckDuckHack VM that others can download and use. The end result will be 2 .OVF files; one for VirtualBox, and one for VMware. These steps assume tht you are running Vagrant with VirtualBox
+
+1. Follow manual-disk-shrink-steps.txt
+
+2. Follow manual-virtualbox-steps.txt
+
+3. Follow manual-vmware-steps.txt
 
 ### Usage
 
