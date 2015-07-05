@@ -51,13 +51,13 @@ chmod 666 $LOG
 which duckpan &> /dev/null || exit_not_installed
 cd ~
 
-echo "Attempting to download http://duckpan.com/install.pl as duckpan-install.pl" 2>&1 | tee -a $LOG
+echo "Attempting to download http://duckpan.org/install.pl as duckpan-install.pl" 2>&1 | tee -a $LOG
 # By setting --tries=1, the longest a user will have to wait is 60 seconds,
 # which would occur for a "connection timed out" error.
 # (Ubuntu 12.04 default of /proc/sys/net/ipv4/tcp-syn-retries = 5)
 #
 # Other errors such as "No route to host" take no more than a few seconds.
-wget --tries=1 -L http://duckpan.com/install.pl -O duckpan-install.pl             &>> $LOG || exit_failed_to_download
+wget --tries=1 -L http://duckpan.org/install.pl -O duckpan-install.pl             &>> $LOG || exit_failed_to_download
 echo ""                                                                           2>&1 | tee -a $LOG
 echo "duckpan-install.pl downloaded successfully. Running it now."                2>&1 | tee -a $LOG
 echo "Its output will be logged to the log file."                                  2>&1 | tee -a $LOG
