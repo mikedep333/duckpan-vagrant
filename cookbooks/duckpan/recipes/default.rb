@@ -46,6 +46,13 @@ end
 # This step is requried with the cloud-images.ubuntu.com boxes
 execute "sudo apt-get -y install libssl-dev"
 
+cookbook_file "/home/vagrant/.bash_profile" do
+  source "home/vagrant/.bash_profile"
+  owner "vagrant"
+  group "vagrant"
+  mode "755"
+end
+
 # download the duckpan install script
 execute "su -l vagrant -c 'wget -L http://duckpan.org/install.pl -O duckpan-install.pl'"
 
@@ -55,5 +62,5 @@ execute "duckpan_install" do
   # need to run command as user vagrant
   # only by invoking command through bash does .bashrc gets sourced properly
   # .bashrc sets important PERL environment variables from perlbrew for duckpan
-  command	"su -l vagrant -c 'bash -l -i -c \"perl duckpan-install.pl\"'"
+  command	"su -l vagrant -c 'bash -l -c \"perl duckpan-install.pl\"'"
 end
